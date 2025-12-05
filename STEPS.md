@@ -16,7 +16,11 @@ This file tracks what was built across phases, in plain language for both engine
 - Updated dispatcher to fan out to enabled channels after formatting the message; logs successes/failures per channel.
 - README updated with channel env snippets and manual test pointers; `.env.local.example` already lists required vars.
 
-## Next Steps (remaining polish)
-- Add small unit tests for `formatContactMessage`.
-- Consider Markdown formatting, Slack/Discord integrations, filtering rules (from roadmap).
-- Review logging for production noise and add minimal retry/backoff if needed.
+## Phase 3 – Testing & Deployment Notes (Polish)
+- Added Vitest setup (`vitest.config.ts`) and `pnpm test` script in `package.json`.
+- Created `tests/formatContactMessage.test.ts` to ensure populated fields are included and empty fields skipped.
+- Expanded README with Vercel deployment checklist, Brevo webhook setup, end-to-end test flow, and test command.
+
+## Remaining Ideas / Roadmap
+- Optional enhancements: Markdown formatting, Slack/Discord integrations, filtering rules, message templating.
+- Consider retries/backoff and production logging tuning.

@@ -68,6 +68,11 @@ docker-compose up --build
 ```
 Your local files are bind-mounted into the container, so code changes reflect immediately. Next.js dev server runs on port 3000.
 
+### Tests
+```bash
+pnpm test
+```
+
 ## Channel configuration & manual tests
 - Telegram: set `TELEGRAM_ENABLED=true`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. Test by posting the sample curl below and confirming receipt in the chat.
 - Email (Brevo transactional): set `EMAIL_ENABLED=true`, `BREVO_EMAIL_API_KEY`, `BREVO_EMAIL_FROM`, `BREVO_EMAIL_TO`. Brevo dashboard → Transactional → API keys to create a key.
@@ -90,6 +95,24 @@ curl -X POST http://localhost:3000/api/brevo/contact-created \
   }'
 ```
 Expected: a JSON `{ ok: true, dispatched: [] }` response and the formatted message logged in the server console. Enable channel flags to see which would be dispatched.
+
+## Deploying to Vercel
+1) Push this repo to GitHub (done).  
+2) In Vercel, import the project; select Node 18+ runtime.  
+3) Set environment variables in Project Settings → Environment Variables (all from `.env.local.example`).  
+4) Deploy. The webhook endpoint will be `https://<vercel-project>.vercel.app/api/brevo/contact-created`.
+
+### Brevo webhook setup
+1) In Brevo: Automation → Settings → Webhooks → Create webhook.  
+2) URL: `https://<vercel-project>.vercel.app/api/brevo/contact-created`  
+3) Event: Contact added (or equivalent).  
+4) Save.
+
+### End-to-end test (production or preview)
+1) Ensure env vars are set in Vercel for the enabled channels.  
+2) Trigger a contact creation in Brevo (e.g., add a contact to a test list).  
+3) Verify channel delivery (Telegram chat, WhatsApp test recipient, email inbox).  
+4) Check Vercel logs for formatted message and any errors.
 
 ## Implementation Phases (roadmap)
 1) Scaffold & Webhook Logging (done): route, config, formatter, dispatcher with logging.
