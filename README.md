@@ -53,6 +53,8 @@ WHATSAPP_RECIPIENT_NUMBER=
 BREVO_EMAIL_API_KEY=
 BREVO_EMAIL_FROM=
 BREVO_EMAIL_TO=
+# (Optional) Brevo Contacts API for enrichment
+BREVO_API_KEY=
 ```
 
 ## Getting Started
@@ -77,6 +79,7 @@ pnpm test
 - Telegram: set `TELEGRAM_ENABLED=true`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. Test by posting the sample curl below and confirming receipt in the chat.
 - Email (Brevo transactional): set `EMAIL_ENABLED=true`, `BREVO_EMAIL_API_KEY`, `BREVO_EMAIL_FROM`, `BREVO_EMAIL_TO`. Brevo dashboard → Transactional → API keys to create a key.
 - WhatsApp Cloud: set `WHATSAPP_ENABLED=true`, `WHATSAPP_ACCESS_TOKEN`, `WHATSAPP_PHONE_NUMBER_ID`, `WHATSAPP_RECIPIENT_NUMBER` (E.164). Ensure the Cloud API app has the recipient approved/tested.
+- Contact enrichment (optional): set `BREVO_API_KEY` (or reuse `BREVO_EMAIL_API_KEY`). The app will fetch full contact details by id/email and include all attributes in notifications.
 
 ### Quick manual test (Phase 1 logging)
 ```bash

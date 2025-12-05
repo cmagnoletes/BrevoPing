@@ -10,6 +10,7 @@ export const config = {
   telegramEnabled: parseBoolean(process.env.TELEGRAM_ENABLED),
   whatsappEnabled: parseBoolean(process.env.WHATSAPP_ENABLED),
   emailEnabled: parseBoolean(process.env.EMAIL_ENABLED),
+  brevoApiKey: getEnv("BREVO_API_KEY", process.env.BREVO_EMAIL_API_KEY),
   telegramBotToken: getEnv("TELEGRAM_BOT_TOKEN"),
   telegramChatId: getEnv("TELEGRAM_CHAT_ID"),
   whatsappAccessToken: getEnv("WHATSAPP_ACCESS_TOKEN"),
