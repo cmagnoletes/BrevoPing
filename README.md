@@ -232,9 +232,9 @@ createdAt: 2025-12-05T15:23:01Z
 listIds: [1, 3]
 
 attributes.FIRSTNAME: Jason
-attributes.LASTNAME: Nicol
+attributes.LASTNAME: Nicoman
 attributes.SOURCE: Quiz Funnel
-attributes.COMPANY: Lycely
+attributes.COMPANY: Acme
 ```
 
 ---
