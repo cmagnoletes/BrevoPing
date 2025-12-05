@@ -62,6 +62,12 @@ pnpm dev
 ```
 The webhook will be available at `http://localhost:3000/api/brevo/contact-created`.
 
+### Docker (live-reload with local code)
+```bash
+docker-compose up --build
+```
+Your local files are bind-mounted into the container, so code changes reflect immediately. Next.js dev server runs on port 3000.
+
 ### Quick manual test (Phase 1 logging)
 ```bash
 curl -X POST http://localhost:3000/api/brevo/contact-created \

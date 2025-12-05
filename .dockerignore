@@ -1,0 +1,10 @@
+.git
+.next
+node_modules
+pnpm-lock.yaml
+Dockerfile
+docker-compose.yml
+.env
+.env.local
+.env*.local
+PROMPTS.md
