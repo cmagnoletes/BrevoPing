@@ -68,6 +68,11 @@ docker-compose up --build
 ```
 Your local files are bind-mounted into the container, so code changes reflect immediately. Next.js dev server runs on port 3000.
 
+## Channel configuration & manual tests
+- Telegram: set `TELEGRAM_ENABLED=true`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. Test by posting the sample curl below and confirming receipt in the chat.
+- Email (Brevo transactional): set `EMAIL_ENABLED=true`, `BREVO_EMAIL_API_KEY`, `BREVO_EMAIL_FROM`, `BREVO_EMAIL_TO`. Brevo dashboard → Transactional → API keys to create a key.
+- WhatsApp Cloud: set `WHATSAPP_ENABLED=true`, `WHATSAPP_ACCESS_TOKEN`, `WHATSAPP_PHONE_NUMBER_ID`, `WHATSAPP_RECIPIENT_NUMBER` (E.164). Ensure the Cloud API app has the recipient approved/tested.
+
 ### Quick manual test (Phase 1 logging)
 ```bash
 curl -X POST http://localhost:3000/api/brevo/contact-created \
@@ -87,11 +92,11 @@ curl -X POST http://localhost:3000/api/brevo/contact-created \
 Expected: a JSON `{ ok: true, dispatched: [] }` response and the formatted message logged in the server console. Enable channel flags to see which would be dispatched.
 
 ## Implementation Phases (roadmap)
-1) Scaffold & Webhook Logging (done): route, config, formatter, dispatcher logging only.  
-2) Telegram notifications: add `src/notifications/channels/telegram.ts`, wire dispatcher.  
-3) Email via Brevo: add `src/notifications/channels/email.ts`, wire dispatcher.  
-4) WhatsApp Cloud API (optional): add `src/notifications/channels/whatsapp.ts`, wire dispatcher.  
-5) Polish & docs: finalize README, env example, light tests for formatter.
+1) Scaffold & Webhook Logging (done): route, config, formatter, dispatcher with logging.
+2) Telegram notifications (done): `src/notifications/channels/telegram.ts` wired to dispatcher.
+3) Email via Brevo (done): `src/notifications/channels/email.ts` wired to dispatcher.
+4) WhatsApp Cloud API (done): `src/notifications/channels/whatsapp.ts` wired to dispatcher.
+5) Polish & docs: finalize README, env example, light tests for formatter (pending).
 
 ## Notes for contributors
 - Keep TypeScript strictness and minimal deps.
